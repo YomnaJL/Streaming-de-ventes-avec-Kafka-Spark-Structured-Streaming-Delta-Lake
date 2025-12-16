@@ -130,7 +130,7 @@ Le producteur génère des ventes aléatoires toutes les 2 secondes avec :
 ### Étape 2 : Lancer le streaming Spark (Bronze Layer)
 
 ```bash
-python spark_streaming_delta.py
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,io.delta:delta-spark_2.12:3.2.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog" spark_streaming_delta.py
 ```
 
 Ce script :
@@ -142,7 +142,7 @@ Ce script :
 ### Étape 3 : Générer la couche Silver (Agrégations)
 
 ```bash
-python streaming_silver.py
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,io.delta:delta-spark_2.12:3.2.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog" streaming_silver.py
 ```
 
 Crée des agrégations par client :
@@ -283,9 +283,8 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👨‍💻 Auteur
 
-**Votre Nom**
-- GitHub: [@votre-username](https://github.com/votre-username)
-- LinkedIn: [Votre Profil](https://linkedin.com/in/votre-profil)
+**YomnaJL**
+
 
 ---
 
